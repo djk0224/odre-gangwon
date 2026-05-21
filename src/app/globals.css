@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --color-pine: #2f4a3a;
+  --color-pine-deep: #1f3429;
+  --color-ivory: #f8f5ee;
+  --color-ink: #0b1f33;
+  --color-mist: #d8e3ea;
+  --color-sand: #e8ddc8;
+  --color-stone-warm: #a79d8d;
+  --color-stone: #8a8a84;
+  --color-paper: #fffdf8;
+  --shadow-soft: 0 24px 70px rgb(11 31 51 / 0.12);
+  --shadow-card: 0 14px 40px rgb(31 52 41 / 0.1);
+}
+
+@theme inline {
+  --color-pine: var(--color-pine);
+  --color-pine-deep: var(--color-pine-deep);
+  --color-ivory: var(--color-ivory);
+  --color-ink: var(--color-ink);
+  --color-mist: var(--color-mist);
+  --color-sand: var(--color-sand);
+  --color-stone-warm: var(--color-stone-warm);
+  --color-stone: var(--color-stone);
+  --color-paper: var(--color-paper);
+  --font-sans: Pretendard, Inter, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-ivory);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgb(216 227 234 / 0.55), transparent 34rem),
+    linear-gradient(180deg, var(--color-ivory), #f3eee3 100%);
+  color: var(--color-ink);
+  font-family: Pretendard, Inter, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: var(--color-pine);
+  color: var(--color-ivory);
+}
