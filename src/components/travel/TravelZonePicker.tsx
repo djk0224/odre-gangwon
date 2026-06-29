@@ -30,7 +30,7 @@ export function TravelZonePicker({
 
   return (
     <div className={className}>
-      <div className="-mx-1 flex gap-2.5 overflow-x-auto px-1 pb-1">
+      <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-5 px-5 pb-1 scrollbar-none">
         {zones.map((zone) => {
           const isSelected = zone.id === selected;
           const isLocked = !isTravelZoneAvailable(zone.id);
@@ -46,7 +46,7 @@ export function TravelZonePicker({
                 onSelect(zone.id);
               }}
               className={cn(
-                "min-w-[140px] shrink-0 rounded-2xl border p-2.5 text-left transition-[border-color,box-shadow,transform]",
+                "w-[10.5rem] max-w-[42vw] shrink-0 snap-start rounded-2xl border p-2.5 text-left transition-[border-color,box-shadow,transform]",
                 isSelected
                   ? "border-pine shadow-[0_0_0_3px_rgba(47,74,58,0.12)]"
                   : "border-pine/10 bg-paper",
@@ -55,8 +55,9 @@ export function TravelZonePicker({
               )}
             >
               <ZoneHeroMedia
+                className="w-full"
                 gradient={zone.gradient}
-                heightClassName="h-[4.5rem]"
+                heightClassName="aspect-[4/3] h-auto"
                 imageAlt={zone.label}
                 imageUrl={zone.imageUrl}
                 overlay
