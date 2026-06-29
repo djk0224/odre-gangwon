@@ -19,6 +19,40 @@ npm run verify:vercel-env
 
 ## 2. Vercel 프로젝트 연결
 
+### A. 네이티브 Git 연동 (권장 — PR Preview·자동 배포)
+
+Vercel 계정에 **GitHub Login Connection**이 없으면 CLI 연동이 실패합니다.
+
+1. [Vercel → Account → Authentication](https://vercel.com/account/settings/authentication) → **GitHub Connect**
+2. [Vercel GitHub App](https://github.com/apps/vercel) → `djk0224/odre-gangwon` 저장소 접근 허용
+3. 로컬에서 연결:
+
+```bash
+npm run connect:vercel-git
+# 또는
+npx vercel git connect --yes
+```
+
+4. [프로젝트 Git 설정](https://vercel.com/djk0224s-projects/odre-gangwon/settings/git)에서 `main` 프로덕션 브랜치 확인
+
+`main` push 시 Vercel이 자동으로 Production 배포합니다.
+
+### B. GitHub Actions (Login Connection 전·백업용)
+
+`.github/workflows/vercel-deploy.yml` — `main` push 시 Vercel CLI로 배포합니다.
+
+필수 GitHub Secrets (`djk0224/odre-gangwon`):
+
+| Secret | 값 |
+|--------|-----|
+| `VERCEL_TOKEN` | [vercel.com/account/tokens](https://vercel.com/account/tokens) |
+| `VERCEL_ORG_ID` | `team_RWntUxecFQOCJ604zdfQtgEW` |
+| `VERCEL_PROJECT_ID` | `prj_RdDOjcNli3cmhr0ssYHvZWlzZDqv` |
+
+네이티브 Git 연동 완료 후 Actions와 중복 배포가 되면 workflow를 비활성화하거나 삭제해도 됩니다.
+
+### C. 수동 import (최초)
+
 1. [vercel.com](https://vercel.com) → **Add New Project** → GitHub 저장소 import
 2. Framework: **Next.js** (자동 감지)
 3. Root Directory: `/` (기본값)
@@ -30,8 +64,9 @@ Vercel Dashboard → Project → **Settings → Environment Variables**
 
 | 변수 | 필수 | 비고 |
 |------|------|------|
-| `DEMO_AUTH_USERNAME` | ✓ | 시연 로그인 |
-| `DEMO_AUTH_PASSWORD` | ✓ | 시연 로그인 |
+| `DEMO_AUTH_ACCOUNTS` | ✓ | `user:pass:이름;user2:pass2:이름` |
+| `DEMO_AUTH_USERNAME` | | 레거시 단일 계정 (ACCOUNTS와 병합) |
+| `DEMO_AUTH_PASSWORD` | | 레거시 단일 계정 |
 | `DEMO_AUTH_DISPLAY_NAME` | | 프로필 이름 |
 | `NEXT_PUBLIC_KAKAO_MAP_APP_KEY` | ✓ | **빌드 시 주입** → 설정 후 Redeploy |
 | `KAKAO_REST_API_KEY` | ✓ | 서버 REST (경로·이동시간) |

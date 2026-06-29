@@ -18,6 +18,7 @@
     "verify:execution": "node scripts/verify-execution-scenario.mjs",
     "verify:itinerary-smoke": "node scripts/verify-itinerary-smoke.mjs",
     "verify:vercel-env": "node scripts/verify-vercel-env.mjs",
+    "connect:vercel-git": "node scripts/connect-vercel-github.mjs",
     "test": "npm run test:engine",
     "test:engine": "npx --yes tsx --test src/lib/catalogRuntime.test.ts src/lib/travelDuration.test.ts src/lib/itineraryMeals.test.ts src/lib/itineraryDiningFill.test.ts src/lib/itineraryAttractionBackfill.test.ts src/lib/itineraryDayPlanner.test.ts src/lib/itineraryScheduleMatrix.test.ts src/lib/routeMatrixPreference.test.ts src/lib/itineraryFeasibilityChecks.test.ts src/lib/feasibilityDisplay.test.ts src/lib/diningInsertTimeline.test.ts src/lib/tripLodgingPlan.test.ts src/lib/lodgingDayAnchors.test.ts src/lib/placeCatalogBuilder.test.ts src/lib/odreNotePlanBridge.test.ts src/lib/executionKernel/verifyItinerary.test.ts src/lib/executionKernel/clientFallback.test.ts src/services/itineraryEditService.test.ts src/services/itineraryEmptySelection.test.ts src/services/reservationService.test.ts src/services/recommendation/recommendationRanker.test.ts src/services/recommendation/diversityMixer.test.ts src/services/recommendation/routeDiningPlanner.test.ts src/services/engines/crowdEngine.test.ts src/stores/tripStore.setItinerary.test.ts src/data/mockReservationOffers.test.ts",
     "build:rag": "npx --yes tsx scripts/build-rag-embeddings.ts",

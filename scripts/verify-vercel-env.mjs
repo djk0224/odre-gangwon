@@ -59,8 +59,10 @@ const checks = [
     id: "demo-auth",
     label: "내 메뉴 시연 로그인",
     required: true,
-    keys: ["DEMO_AUTH_USERNAME", "DEMO_AUTH_PASSWORD"],
-    hint: "둘 다 설정해야 로그인 API 활성화",
+    keys: ["DEMO_AUTH_ACCOUNTS", "DEMO_AUTH_USERNAME", "DEMO_AUTH_PASSWORD"],
+    custom: () =>
+      has("DEMO_AUTH_ACCOUNTS") || (has("DEMO_AUTH_USERNAME") && has("DEMO_AUTH_PASSWORD")),
+    hint: "DEMO_AUTH_ACCOUNTS 또는 DEMO_AUTH_USERNAME+PASSWORD",
   },
   {
     id: "llm",
@@ -85,7 +87,11 @@ console.log("ODRÉ GANGWON — Vercel env check\n");
 
 for (const check of checks) {
   const present = check.keys.filter((key) => has(key));
-  const ok = check.anyOf ? present.length > 0 : present.length === check.keys.length;
+  const ok = check.custom
+    ? check.custom()
+    : check.anyOf
+      ? present.length > 0
+      : present.length === check.keys.length;
   const status = ok ? "OK" : check.required ? "MISSING" : "optional";
   const icon = ok ? "✓" : check.required ? "✗" : "○";
 

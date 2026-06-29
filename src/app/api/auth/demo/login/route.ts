@@ -4,7 +4,7 @@ import { buildDemoAuthUser, isDemoAuthEnabled, verifyDemoCredentials } from "@/l
 export async function POST(request: Request) {
   if (!isDemoAuthEnabled()) {
     return NextResponse.json(
-      { error: "데모 로그인이 설정되지 않았습니다. DEMO_AUTH_USERNAME/PASSWORD를 확인해 주세요." },
+      { error: "데모 로그인이 설정되지 않았습니다. DEMO_AUTH_ACCOUNTS 또는 DEMO_AUTH_USERNAME/PASSWORD를 확인해 주세요." },
       { status: 503 },
     );
   }
