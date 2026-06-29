@@ -158,13 +158,9 @@ npm run verify:itinerary-smoke
 
 | 문서 | 내용 |
 |------|------|
-| [PRD.md](PRD.md) | 제품 요구사항 |
-| [PLAN.md](PLAN.md) | 구현 단계 |
-| [AGENTS.md](AGENTS.md) | 코딩·브랜드 규칙 |
 | [APP_FLOW_VERIFICATION.md](APP_FLOW_VERIFICATION.md) | 화면·플로우 QA |
-| [DEPLOY_WEEK.md](DEPLOY_WEEK.md) | 1주 배포 실행 계획 |
-| [docs/ODRE_Gangwon_execution_platform_brief.md](docs/ODRE_Gangwon_execution_platform_brief.md) | 실행 플랫폼 브리프 |
+| [docs/VERCEL_DEPLOY.md](docs/VERCEL_DEPLOY.md) | Vercel 배포 가이드 |
 
 ## 라이선스
 
-Private demo repository.
+Public demo repository — ODRÉ GANGWON.

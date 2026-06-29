@@ -38,6 +38,14 @@ pnpm-debug.log*
 # cursor / agent (not app)
 .cursor/
 
+# Internal strategy docs (local only — not in public repo)
+AGENTS.md
+DEPLOY_WEEK.md
+PLAN.md
+PRD.md
+docs/ODRE_Gangwon_execution_platform_brief.md
+docs/mentor_feedback_response.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
