@@ -27,6 +27,7 @@ type MenuSubview = "main" | "settings" | "notices";
 
 interface MyMenuSheetProps {
   open: boolean;
+  isLoggedIn: boolean;
   hasItinerary: boolean;
   tripExecutionPhase?: TripExecutionPhase;
   claimedLocalOfferIds: string[];
@@ -36,6 +37,7 @@ interface MyMenuSheetProps {
   savedPlacesCount: number;
   careAlertCount: number;
   onClose: () => void;
+  onRequireLogin: () => void;
   onAiPlan: () => void;
   onOpenPlaces: () => void;
   onOpenSavedPlaces: () => void;
@@ -60,6 +62,7 @@ const quickActions = [
 
 export function MyMenuSheet({
   open,
+  isLoggedIn,
   hasItinerary,
   tripExecutionPhase,
   claimedLocalOfferIds,
@@ -69,6 +72,7 @@ export function MyMenuSheet({
   savedPlacesCount,
   careAlertCount,
   onClose,
+  onRequireLogin,
   onAiPlan,
   onOpenPlaces,
   onOpenSavedPlaces,
@@ -114,6 +118,14 @@ export function MyMenuSheet({
     care: onOpenCare,
   };
 
+  function handleProtectedAction(action: () => void) {
+    if (!isLoggedIn) {
+      onRequireLogin();
+      return;
+    }
+    handleSelect(action);
+  }
+
   if (subView === "settings") {
     return (
       <MenuOverlay onClose={onClose}>
@@ -145,7 +157,7 @@ export function MyMenuSheet({
           <button
             aria-label="알림"
             className="relative flex size-10 items-center justify-center text-ink"
-            onClick={() => handleSelect(onOpenCare)}
+            onClick={() => handleProtectedAction(onOpenCare)}
             type="button"
           >
             <Bell aria-hidden="true" className="size-5" />
@@ -203,7 +215,7 @@ export function MyMenuSheet({
               <button
                 className="flex flex-col items-center gap-2 px-1 py-1"
                 key={action.id}
-                onClick={() => handleSelect(quickHandlers[action.id])}
+                onClick={() => handleProtectedAction(quickHandlers[action.id])}
                 type="button"
               >
                 <span className="relative flex size-11 items-center justify-center rounded-full border border-pine/12 text-pine">
@@ -221,12 +233,12 @@ export function MyMenuSheet({
         </section>
 
         <ul className="divide-y divide-pine/8">
-          <MenuRow label="AI 실행 일정 만들기" onClick={() => handleSelect(onAiPlan)} />
+          <MenuRow label="AI 실행 일정 만들기" onClick={() => handleProtectedAction(onAiPlan)} />
           <MenuRow label="장소 탐색" onClick={() => handleSelect(onOpenPlaces)} />
           <MenuRow
             badge={savedItinerariesCount > 0 ? String(savedItinerariesCount) : undefined}
             label="저장된 일정"
-            onClick={() => handleSelect(onOpenItinerary)}
+            onClick={() => handleProtectedAction(onOpenItinerary)}
           />
           <MenuRow
             badge={
@@ -238,13 +250,13 @@ export function MyMenuSheet({
             }
             badgeTone={pendingReservationCount > 0 ? "alert" : "default"}
             label="내 예약"
-            onClick={() => handleSelect(onOpenReservation)}
+            onClick={() => handleProtectedAction(onOpenReservation)}
           />
           {claimedLocalOfferIds.length > 0 ? (
             <MenuRow
               badge={String(claimedLocalOfferIds.length)}
               label="경로 쿠폰 보관함"
-              onClick={() => handleSelect(onOpenCare)}
+              onClick={() => handleProtectedAction(onOpenCare)}
             />
           ) : null}
         </ul>

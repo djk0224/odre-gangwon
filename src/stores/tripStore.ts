@@ -56,6 +56,7 @@ import type {
   TripPreferences,
 } from "@/types/travel";
 import type { OdreNotePlanContext } from "@/lib/odreNotePlanBridge";
+import { isDemoUserLoggedIn } from "@/lib/demoAuthGate";
 
 function withClientFeasibility(
   itinerary: Itinerary | undefined,
@@ -134,7 +135,7 @@ interface TripState {
   purchaseGangwonPass: (planId: string, paymentMethod: string) => boolean;
   redeemGangwonPassBenefit: (benefitId: string) => boolean;
   claimLocalOffer: (offerId: string) => void;
-  toggleSavedPlace: (placeId: string) => void;
+  toggleSavedPlace: (placeId: string) => boolean;
   isPlaceSaved: (placeId: string) => boolean;
   clearSavedPlaces: () => void;
   trackRecentPlace: (placeId: string) => void;
@@ -402,7 +403,8 @@ export const useTripStore = create<TripState>()(
         scheduleCareAlertsRefresh(get, set);
       },
 
-      toggleSavedPlace: (placeId) =>
+      toggleSavedPlace: (placeId) => {
+        if (!isDemoUserLoggedIn()) return false;
         set((state) => {
           const exists = state.savedPlaceIds.includes(placeId);
           const event = createBehaviorEvent(
@@ -417,7 +419,9 @@ export const useTripStore = create<TripState>()(
             behaviorEvents,
             behaviorProfile: buildBehaviorProfile(behaviorEvents),
           };
-        }),
+        });
+        return true;
+      },
 
       isPlaceSaved: (placeId) => get().savedPlaceIds.includes(placeId),
 

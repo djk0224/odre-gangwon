@@ -144,6 +144,7 @@ import {
 } from "@/services/reservationService";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/authStore";
+import { DEMO_LOGIN_REQUIRED_MESSAGE } from "@/lib/demoAuthGate";
 import { useTripStore } from "@/stores/tripStore";
 import type { ReservationHubCategory } from "@/types/reservationHub";
 import type { ActiveGangwonPass } from "@/types/gangwonPass";
@@ -190,6 +191,23 @@ type Step =
 type GeneratingSource = "preferences" | "saved" | "nature-road" | "odre-note";
 
 const ONBOARDING_KEY = "odre-onboarded";
+
+const LOGIN_GATED_STEPS = new Set<Step>([
+  "trip-preferences",
+  "trip-places",
+  "trip-dining",
+  "trip-summary",
+  "trip-stay-area",
+  "trip-hotels",
+  "trip-generating",
+  "trip-result",
+  "nature-road-plan",
+  "generating",
+  "itinerary",
+  "reservation",
+  "itinerary-reservation",
+  "care",
+]);
 
 function getBackStep(
   step: Step,
@@ -337,6 +355,26 @@ export function OdreTravelApp() {
   const [lodgingPickerNight, setLodgingPickerNight] = useState<number | null>(null);
   const tripStepHistoryRef = useRef<Step[]>([]);
   const suppressTripHistoryRef = useRef(false);
+  const authUser = useAuthStore((state) => state.user);
+  const isLoggedIn = Boolean(authUser);
+
+  function showToast(message: string) {
+    setToastMessage(message);
+    window.setTimeout(() => setToastMessage(""), 2800);
+  }
+
+  function promptLogin(message = DEMO_LOGIN_REQUIRED_MESSAGE) {
+    showToast(message);
+    setMenuOpen(true);
+  }
+
+  function requireAuth(action: () => void, message = DEMO_LOGIN_REQUIRED_MESSAGE) {
+    if (isLoggedIn) {
+      action();
+      return;
+    }
+    promptLogin(message);
+  }
 
   function moveTripStep(next: Step, nextOrder: number) {
     if (
@@ -388,6 +426,10 @@ export function OdreTravelApp() {
     source: GeneratingSource = "preferences",
     prefsOverride?: TripPreferences,
   ) {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     resetTripFlowHistory();
     setGeneratingSource(source);
     const synced = prefsOverride ?? preferences;
@@ -510,6 +552,10 @@ export function OdreTravelApp() {
   }
 
   function handlePlanFromOdreNote(noteId: string) {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     const note = getOdreNoteById(noteId);
     if (!note) return;
 
@@ -630,7 +676,6 @@ export function OdreTravelApp() {
           getItineraryReservationPlaces(displayItinerary).length - reservations.length,
         )
       : 0;
-  const authUser = useAuthStore((state) => state.user);
   const pendingReservationCount = committedReservationProgress.pending;
   const tripFloatingBarStatus = useMemo(() => {
     if (tripExecutionPhase !== "trip-day") {
@@ -696,12 +741,19 @@ export function OdreTravelApp() {
     prevTripStepRef.current = step;
   }, [step, routeDiningPlan]);
 
-  function showToast(message: string) {
-    setToastMessage(message);
-    window.setTimeout(() => setToastMessage(""), 2800);
+  function goToCare() {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
+    setStep("care");
   }
 
   function openMyReservations() {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     setConfirmMessage("");
     if (committedItinerary) {
       const partnerPlaces = getItineraryReservationPlaces(committedItinerary);
@@ -731,6 +783,10 @@ export function OdreTravelApp() {
   }
 
   function openItineraryAdmission() {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     setConfirmMessage("");
     commitPendingItineraryToStore();
     if (!useTripStore.getState().itinerary) {
@@ -745,6 +801,10 @@ export function OdreTravelApp() {
     sheetPlaceId: string | null = null,
     options?: { returnStep?: Step | null },
   ) {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     setReservationHubCategory(category);
     setReservationSheetPlaceId(sheetPlaceId);
     if (options && "returnStep" in options) {
@@ -781,6 +841,10 @@ export function OdreTravelApp() {
 
   /** AI 비서에서 제안한 코스 → 채팅에서 수집한 조건으로 바로 일정 생성 */
   function startItineraryFromAiChat(placeIds: string[], mergedPreferences?: TripPreferences) {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     pendingOrderedPlaceIdsRef.current =
       placeIds.length > 0 ? [...placeIds] : null;
 
@@ -821,6 +885,10 @@ export function OdreTravelApp() {
     zoneId: TravelZoneId,
     segment: FeaturedNatureRoadSegment,
   ) {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     const next: TripPreferences = {
       ...preferences,
       transportation: "car",
@@ -903,23 +971,27 @@ export function OdreTravelApp() {
   function runCareAlertAction(action: CareAlertAction) {
     switch (action.type) {
       case "qr-ticket":
-        if (hasCommittedItinerary && pendingReservationCount > 0) {
-          setStep("itinerary-reservation");
-        } else if (reservations.length > 0) {
-          setStep("itinerary-reservation");
-        } else {
-          setStep("care");
-        }
+        requireAuth(() => {
+          if (hasCommittedItinerary && pendingReservationCount > 0) {
+            setStep("itinerary-reservation");
+          } else if (reservations.length > 0) {
+            setStep("itinerary-reservation");
+          } else {
+            setStep("care");
+          }
+        });
         break;
       case "itinerary-reservation":
-        setStep("itinerary-reservation");
+        requireAuth(() => setStep("itinerary-reservation"));
         break;
       case "itinerary-edit":
-        setItineraryDetailUnlocked(true);
-        setStep("itinerary");
+        requireAuth(() => {
+          setItineraryDetailUnlocked(true);
+          setStep("itinerary");
+        });
         break;
       case "local-coupons":
-        setStep("care");
+        goToCare();
         break;
       case "hub-reservations":
         openReservationHub("stay");
@@ -956,6 +1028,18 @@ export function OdreTravelApp() {
       window.clearTimeout(timeoutId);
     };
   }, []);
+
+  useEffect(() => {
+    if (!hasHydrated || isLoggedIn) return;
+    if (LOGIN_GATED_STEPS.has(step)) {
+      setStep("home");
+      setMenuOpen(true);
+      showToast(DEMO_LOGIN_REQUIRED_MESSAGE);
+    }
+    if (placesScreenMode === "saved") {
+      setPlacesScreenMode("category");
+    }
+  }, [hasHydrated, isLoggedIn, step, placesScreenMode]);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -1198,6 +1282,10 @@ export function OdreTravelApp() {
   }, []);
 
   function openItineraryPicker() {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     setPendingItinerary(null);
     setItineraryDetailUnlocked(false);
     setStep("itinerary");
@@ -1425,6 +1513,10 @@ export function OdreTravelApp() {
   }
 
   function openItineraryTab() {
+    if (!isLoggedIn) {
+      promptLogin();
+      return;
+    }
     if (savedItineraries.length > 0) {
       setItineraryDetailUnlocked(false);
     }
@@ -1472,7 +1564,7 @@ export function OdreTravelApp() {
       openReservationHub(reservationHubCategory);
       return;
     }
-    if (item === "care") setStep("care");
+    if (item === "care") goToCare();
   }
 
   function getActiveBottomItem(): BottomNavItem {
@@ -1553,8 +1645,10 @@ export function OdreTravelApp() {
               <ActiveTripFloatingBar
                 eyebrow={tripFloatingBarCopy.eyebrow}
                 onClick={() => {
-                  setItineraryDetailUnlocked(true);
-                  setStep("itinerary");
+                  requireAuth(() => {
+                    setItineraryDetailUnlocked(true);
+                    setStep("itinerary");
+                  });
                 }}
                 status={tripFloatingBarStatus}
                 title={
@@ -1576,7 +1670,7 @@ export function OdreTravelApp() {
               onStartTripFlow={() => {
                 clearOdreNotePlanContext();
                 setGeneratingSource("preferences");
-                moveTripStep("trip-preferences", 1);
+                enterTripPreferencesFlow();
               }}
               regionStampIds={regionStampIds}
               regionStampCollectedAt={regionStampCollectedAt}
@@ -1601,6 +1695,7 @@ export function OdreTravelApp() {
                   `${label} 권역은 아직 일정 실행 준비 중입니다. 카탈로그 갱신 후 이용할 수 있어요.`,
                 )
               }
+              onRequireLogin={promptLogin}
             />
           ) : null}
           {step === "places" ? (
@@ -1608,6 +1703,7 @@ export function OdreTravelApp() {
               mode={placesScreenMode}
               onGoHome={() => setStep("home")}
               onOpenPlace={openPlaceDetail}
+              onRequireLogin={promptLogin}
               preferences={preferences}
             />
           ) : null}
@@ -1864,7 +1960,7 @@ export function OdreTravelApp() {
                 isPreviewItinerary={Boolean(pendingItinerary)}
                 onClaimLocalOffer={claimLocalOffer}
                 confirmedPlaceIds={confirmedPlaceIds}
-                onViewLocalCoupons={() => setStep("care")}
+                onViewLocalCoupons={goToCare}
                 preferences={preferences}
                 reservations={reservations}
                 savedItineraries={savedItineraries}
@@ -1944,7 +2040,7 @@ export function OdreTravelApp() {
               isPreviewItinerary={Boolean(pendingItinerary)}
               onClaimLocalOffer={claimLocalOffer}
               confirmedPlaceIds={confirmedPlaceIds}
-              onViewLocalCoupons={() => setStep("care")}
+              onViewLocalCoupons={goToCare}
               preferences={preferences}
               reservations={reservations}
               savedItineraries={savedItineraries}
@@ -2082,7 +2178,7 @@ export function OdreTravelApp() {
           <AiAssistantSheet
             onClose={() => setAssistantOpen(false)}
             onCreateItinerary={startItineraryFromAiChat}
-            onOpenCare={() => setStep("care")}
+            onOpenCare={goToCare}
             onOpenItinerary={openItineraryTab}
             onOpenPlace={openPlaceDetail}
             onOpenReservationHub={(category) => openReservationHub(category ?? "attraction")}
@@ -2129,10 +2225,12 @@ export function OdreTravelApp() {
             careAlertCount={careAlertCount}
             claimedLocalOfferIds={claimedLocalOfferIds}
             hasItinerary={hasCommittedItinerary}
+            isLoggedIn={isLoggedIn}
             tripExecutionPhase={tripExecutionPhase}
             onAiPlan={() => enterTripPreferencesFlow()}
             onClose={() => setMenuOpen(false)}
-            onOpenCare={() => setStep("care")}
+            onRequireLogin={promptLogin}
+            onOpenCare={goToCare}
             onOpenItinerary={openItineraryTab}
             onOpenPlace={openPlaceDetail}
             onOpenPlaces={() => {
@@ -2140,10 +2238,12 @@ export function OdreTravelApp() {
               setStep("places");
             }}
             onOpenReservation={openMyReservations}
-            onOpenSavedPlaces={() => {
-              setPlacesScreenMode("saved");
-              setStep("places");
-            }}
+            onOpenSavedPlaces={() =>
+              requireAuth(() => {
+                setPlacesScreenMode("saved");
+                setStep("places");
+              })
+            }
             open={menuOpen}
             pendingReservationCount={pendingReservationCount}
             reservationCount={totalReservationCount}
@@ -2161,6 +2261,7 @@ export function OdreTravelApp() {
                 onOpenPlace={openPlaceDetail}
                 onOpenReservation={(placeId) => openReservationHub("attraction", placeId)}
                 onPlanAroundPlace={startPlanFromPlace}
+                onRequireLogin={promptLogin}
                 place={detailPlace}
               />
             </div>
@@ -2197,6 +2298,7 @@ function HomeScreen({
   onZoneChange,
   onZonePreviewOnly,
   onStartTripFlow,
+  onRequireLogin,
   catalogRevision,
 }: {
   engineContext: ReturnType<typeof buildEngineContextFromTripStore>;
@@ -2215,6 +2317,7 @@ function HomeScreen({
   onZoneChange: (zoneId: TravelZoneId) => void;
   onZonePreviewOnly: (zoneLabel: string) => void;
   onStartTripFlow: () => void;
+  onRequireLogin: () => void;
 }) {
   const activeZoneId = preferences.zoneId;
   const [browseSection, setBrowseSection] = useState<{
@@ -2358,6 +2461,7 @@ function HomeScreen({
             setBrowseSection(null);
             onOpenPlace(placeId);
           }}
+          onRequireLogin={onRequireLogin}
           onToggleSave={showSaveHint}
           onViewMore={() =>
             setBrowseSection({ title: section.title, places: section.browsePlaces })

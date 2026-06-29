@@ -12,6 +12,7 @@ interface PlaceCarouselCardProps {
   widthClassName?: string;
   onOpen?: (placeId: string) => void;
   onToggleSave?: () => void;
+  onRequireLogin?: () => void;
 }
 
 export function PlaceCarouselCard({
@@ -19,12 +20,17 @@ export function PlaceCarouselCard({
   widthClassName = "w-[9.5rem]",
   onOpen,
   onToggleSave,
+  onRequireLogin,
 }: PlaceCarouselCardProps) {
   const isSaved = useTripStore((state) => state.savedPlaceIds.includes(place.id));
   const toggleSavedPlace = useTripStore((state) => state.toggleSavedPlace);
 
   function handleToggle() {
-    toggleSavedPlace(place.id);
+    const ok = toggleSavedPlace(place.id);
+    if (!ok) {
+      onRequireLogin?.();
+      return;
+    }
     onToggleSave?.();
   }
 

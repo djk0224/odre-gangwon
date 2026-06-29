@@ -23,6 +23,7 @@ interface PlacesScreenProps {
   mode?: PlacesScreenMode;
   onGoHome: () => void;
   onOpenPlace: (placeId: string) => void;
+  onRequireLogin?: () => void;
 }
 
 export function PlacesScreen({
@@ -30,6 +31,7 @@ export function PlacesScreen({
   mode = "category",
   onGoHome,
   onOpenPlace,
+  onRequireLogin,
 }: PlacesScreenProps) {
   const [activeThemes, setActiveThemes] = useState<TripTheme[]>(preferences.themes);
   const [saveHint, setSaveHint] = useState("");
@@ -166,6 +168,7 @@ export function PlacesScreen({
             <PlaceListCard
               key={place.id}
               onOpen={() => onOpenPlace(place.id)}
+              onRequireLogin={onRequireLogin}
               onToggleSave={handleToggleSaveHint}
               place={place}
             />

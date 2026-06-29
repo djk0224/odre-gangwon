@@ -41,6 +41,7 @@ interface PlaceDetailScreenProps {
   onAddToSchedule: (place: Place) => void;
   onPlanAroundPlace?: (place: Place) => void;
   onOpenReservation?: (placeId: string) => void;
+  onRequireLogin?: () => void;
   currentUserId?: string;
 }
 
@@ -52,6 +53,7 @@ export function PlaceDetailScreen({
   onAddToSchedule,
   onPlanAroundPlace,
   onOpenReservation,
+  onRequireLogin,
   currentUserId,
 }: PlaceDetailScreenProps) {
   const [hoursExpanded, setHoursExpanded] = useState(false);
@@ -190,7 +192,11 @@ export function PlaceDetailScreen({
             icon={Heart}
             label="찜"
             onClick={() => {
-              toggleSavedPlace(place.id);
+              const ok = toggleSavedPlace(place.id);
+              if (!ok) {
+                onRequireLogin?.();
+                return;
+              }
               showMessage(isSaved ? "찜을 해제했습니다." : "장소 탭 · 찜에 저장했습니다.");
             }}
           />

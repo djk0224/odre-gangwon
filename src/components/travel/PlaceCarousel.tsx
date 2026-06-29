@@ -8,6 +8,7 @@ interface PlaceCarouselProps {
   onViewMore?: () => void;
   onOpenPlace?: (placeId: string) => void;
   onToggleSave?: () => void;
+  onRequireLogin?: () => void;
 }
 
 export function PlaceCarousel({
@@ -16,6 +17,7 @@ export function PlaceCarousel({
   onViewMore,
   onOpenPlace,
   onToggleSave,
+  onRequireLogin,
 }: PlaceCarouselProps) {
   if (places.length === 0) return null;
 
@@ -39,6 +41,7 @@ export function PlaceCarousel({
           <PlaceCarouselCard
             key={place.id}
             onOpen={onOpenPlace}
+            onRequireLogin={onRequireLogin}
             onToggleSave={onToggleSave}
             place={place}
           />
