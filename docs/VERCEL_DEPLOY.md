@@ -37,19 +37,10 @@ npx vercel git connect --yes
 
 `main` push 시 Vercel이 자동으로 Production 배포합니다.
 
-### B. GitHub Actions (Login Connection 전·백업용)
+### B. GitHub Actions (백업 — 수동 실행만)
 
-`.github/workflows/vercel-deploy.yml` — `main` push 시 Vercel CLI로 배포합니다.
-
-필수 GitHub Secrets (`djk0224/odre-gangwon`):
-
-| Secret | 값 |
-|--------|-----|
-| `VERCEL_TOKEN` | [vercel.com/account/tokens](https://vercel.com/account/tokens) |
-| `VERCEL_ORG_ID` | `team_RWntUxecFQOCJ604zdfQtgEW` |
-| `VERCEL_PROJECT_ID` | `prj_RdDOjcNli3cmhr0ssYHvZWlzZDqv` |
-
-네이티브 Git 연동 완료 후 Actions와 중복 배포가 되면 workflow를 비활성화하거나 삭제해도 됩니다.
+네이티브 Git 연동이 되어 있으면 `main` push는 Vercel이 직접 배포합니다.
+`.github/workflows/vercel-deploy.yml`은 **workflow_dispatch**(수동) 전용 백업입니다.
 
 ### C. 수동 import (최초)
 
