@@ -175,7 +175,9 @@ npm run verify:itinerary-smoke
 | 문서 | 내용 |
 |------|------|
 | [APP_FLOW_VERIFICATION.md](APP_FLOW_VERIFICATION.md) | 화면·플로우·QA 체크리스트 |
-| [docs/VERCEL_DEPLOY.md](docs/VERCEL_DEPLOY.md) | Vercel·env·Kakao 설정 |
+| [docs/AI_FEATURES.md](docs/AI_FEATURES.md) | AI provider·컨시어지·일정·검색·케어 API 명세 |
+| [docs/external_data_sources.md](docs/external_data_sources.md) | 외부 공공 API·로컬 데이터 파이프라인 |
+| [docs/VERCEL_DEPLOY.md](docs/VERCEL_DEPLOY.md) | Vercel·env·Kakao·배포 절차 |
 
 내부 전략 문서(PRD·PLAN 등)는 public 저장소에 포함하지 않습니다.
 

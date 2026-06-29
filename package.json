@@ -22,8 +22,7 @@
     "test": "npm run test:engine",
     "test:engine": "npx --yes tsx --test src/lib/catalogRuntime.test.ts src/lib/travelDuration.test.ts src/lib/itineraryMeals.test.ts src/lib/itineraryDiningFill.test.ts src/lib/itineraryAttractionBackfill.test.ts src/lib/itineraryDayPlanner.test.ts src/lib/itineraryScheduleMatrix.test.ts src/lib/routeMatrixPreference.test.ts src/lib/itineraryFeasibilityChecks.test.ts src/lib/feasibilityDisplay.test.ts src/lib/diningInsertTimeline.test.ts src/lib/tripLodgingPlan.test.ts src/lib/lodgingDayAnchors.test.ts src/lib/placeCatalogBuilder.test.ts src/lib/odreNotePlanBridge.test.ts src/lib/executionKernel/verifyItinerary.test.ts src/lib/executionKernel/clientFallback.test.ts src/services/itineraryEditService.test.ts src/services/itineraryEmptySelection.test.ts src/services/reservationService.test.ts src/services/recommendation/recommendationRanker.test.ts src/services/recommendation/diversityMixer.test.ts src/services/recommendation/routeDiningPlanner.test.ts src/services/engines/crowdEngine.test.ts src/stores/tripStore.setItinerary.test.ts src/data/mockReservationOffers.test.ts",
     "build:rag": "npx --yes tsx scripts/build-rag-embeddings.ts",
-    "build:rag:full": "npx --yes tsx scripts/build-rag-embeddings.ts --full",
-    "capture:survey-screenshots": "node scripts/capture-survey-screenshots.mjs"
+    "build:rag:full": "npx --yes tsx scripts/build-rag-embeddings.ts --full"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
