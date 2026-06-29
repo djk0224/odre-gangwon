@@ -1,3 +1,13 @@
+import { CrowdBadge } from "@/components/ui/CrowdBadge";
+import {
+  TravelCardChip,
+  TravelCardList,
+  TravelCardOrderBadge,
+  TravelCardSectionHeader,
+  TravelCardShell,
+  travelCardClass,
+} from "@/components/ui/TravelCard";
+import { cn } from "@/lib/utils";
 import type { ItineraryTimelineItem } from "@/types/travel";
 
 interface ItineraryTimelineProps {
@@ -6,29 +16,46 @@ interface ItineraryTimelineProps {
 
 export function ItineraryTimeline({ items }: ItineraryTimelineProps) {
   return (
-    <section className="rounded-3xl border border-pine/10 bg-paper p-5 shadow-[var(--shadow-card)]">
-      <div className="mb-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-pine">
-          Itinerary
-        </p>
-        <h3 className="mt-1 text-xl font-semibold text-ink">하루 일정표</h3>
-      </div>
-      <ol className="space-y-5">
+    <TravelCardShell>
+      <TravelCardSectionHeader
+        description="방문 순서대로 정리된 실행 일정입니다."
+        eyebrow="Itinerary"
+        title="오늘의 일정"
+      />
+
+      <TravelCardList>
         {items.map((item, index) => (
-          <li className="grid grid-cols-[56px_1fr] gap-4" key={item.id}>
-            <time className="text-sm font-semibold text-pine">{item.time}</time>
-            <div className="relative border-l border-pine/20 pl-5">
-              <span className="absolute -left-[5px] top-1 size-2.5 rounded-full bg-pine" />
-              <p className="text-sm font-semibold text-ink">{item.title}</p>
-              <p className="mt-1 text-sm leading-5 text-stone">{item.description}</p>
-              <p className="mt-2 text-xs font-medium text-pine">{item.duration}</p>
-              {index === items.length - 1 ? (
-                <span className="absolute -left-px top-4 h-full w-px bg-paper" />
+          <div className="flex gap-3 p-4" key={item.id}>
+            <TravelCardOrderBadge order={index + 1} />
+            <div className="min-w-0 flex-1">
+              <div className="flex items-start justify-between gap-2">
+                <h4 className={travelCardClass.title}>{item.title}</h4>
+              </div>
+              <p className={cn("mt-1", travelCardClass.subtitle)}>{item.description}</p>
+              <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                <TravelCardChip>{item.duration}</TravelCardChip>
+                {item.travelLegToNext ? (
+                  <TravelCardChip tone="neutral">{item.travelLegToNext}</TravelCardChip>
+                ) : null}
+                {item.reservationRequired ? (
+                  <TravelCardChip tone="accent">예약 필요</TravelCardChip>
+                ) : null}
+                {item.partner ? <TravelCardChip tone="neutral">제휴</TravelCardChip> : null}
+              </div>
+              {item.crowdLevel ? (
+                <div className="mt-2">
+                  <CrowdBadge
+                    level={item.crowdLevel}
+                    wait={item.expectedWait}
+                    confidence={item.crowdConfidence}
+                    compact
+                  />
+                </div>
               ) : null}
             </div>
-          </li>
+          </div>
         ))}
-      </ol>
-    </section>
+      </TravelCardList>
+    </TravelCardShell>
   );
 }

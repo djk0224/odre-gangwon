@@ -1,0 +1,76 @@
+{
+  "updatedAt": "2026-05-26T18:47:48.864Z",
+  "source": "https://natureroad.gangwon.kr",
+  "courses": [
+    {
+      "id": 1,
+      "name": "1코스",
+      "roadName": "호수 드라이브길",
+      "distanceKm": 172,
+      "viewPointCount": 8,
+      "guideCoarseCount": 4,
+      "pathPointCount": 3,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/1"
+    },
+    {
+      "id": 2,
+      "name": "2코스",
+      "roadName": "설악산 드라이브길",
+      "distanceKm": 178,
+      "viewPointCount": 7,
+      "guideCoarseCount": 4,
+      "pathPointCount": 3,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/2"
+    },
+    {
+      "id": 3,
+      "name": "3코스",
+      "roadName": "높은 고개 드라이브길",
+      "distanceKm": 110,
+      "viewPointCount": 3,
+      "guideCoarseCount": 4,
+      "pathPointCount": 1,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/3"
+    },
+    {
+      "id": 4,
+      "name": "4코스",
+      "roadName": "굽이굽이 드라이브길",
+      "distanceKm": 160,
+      "viewPointCount": 8,
+      "guideCoarseCount": 4,
+      "pathPointCount": 0,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/4"
+    },
+    {
+      "id": 5,
+      "name": "5코스",
+      "roadName": "깊은산 드라이브길",
+      "distanceKm": 189,
+      "viewPointCount": 8,
+      "guideCoarseCount": 4,
+      "pathPointCount": 1,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/5"
+    },
+    {
+      "id": 6,
+      "name": "6코스",
+      "roadName": "바다 드라이브길",
+      "distanceKm": 134,
+      "viewPointCount": 7,
+      "guideCoarseCount": 4,
+      "pathPointCount": 2,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/6"
+    },
+    {
+      "id": 7,
+      "name": "7코스",
+      "roadName": "전원풍경 드라이브길",
+      "distanceKm": 139,
+      "viewPointCount": 5,
+      "guideCoarseCount": 4,
+      "pathPointCount": 1,
+      "officialUrl": "https://natureroad.gangwon.kr/coarse/7"
+    }
+  ]
+}

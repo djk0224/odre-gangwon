@@ -35,6 +35,26 @@ pnpm-debug.log*
 # vercel
 .vercel
 
+# cursor / agent (not app)
+.cursor/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# --- Agent / browser tooling (not app runtime) ---
+.playwright-mcp/
+
+# --- Generated artifacts (rebuild: npm run build:rag) ---
+src/data/generated/*
+!src/data/generated/.gitkeep
+
+# --- Survey capture output (not app; see docs/survey/GOOGLE_FORM.md) ---
+docs/survey/screenshots/*
+!docs/survey/screenshots/.gitkeep
+
+# --- Large imported datasets (optional: regenerate via npm scripts) ---
+# 전체 강원 JSON은 용량 때문에 제외. MVP·tour-gw-gangwon은 배포에 포함 권장.
+src/data/imported/sbiz-commerce-gangwon.json
+src/data/imported/gangwon-restaurants-gangwon.json
+

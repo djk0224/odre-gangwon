@@ -1,4 +1,10 @@
-import { Check, Clock } from "lucide-react";
+import {
+  TravelCardMedia,
+  TravelCardSelectIndicator,
+  TravelCardShell,
+  TravelCardChip,
+  travelCardClass,
+} from "@/components/ui/TravelCard";
 import { cn } from "@/lib/utils";
 import type { Place } from "@/types/travel";
 
@@ -9,37 +15,30 @@ interface PlaceCardProps {
 
 export function PlaceCard({ place, selected = false }: PlaceCardProps) {
   return (
-    <article
-      className={cn(
-        "grid grid-cols-[104px_1fr] overflow-hidden rounded-3xl border bg-paper shadow-[var(--shadow-card)]",
-        selected ? "border-pine" : "border-pine/10",
-      )}
-    >
-      <div className={cn("min-h-36 bg-gradient-to-br", place.gradient)} />
-      <div className="space-y-3 p-4">
+    <TravelCardShell interactive selected={selected}>
+      <TravelCardMedia
+        gradient={place.gradient}
+        heightClassName="h-36"
+        imageAlt={place.name}
+        imageUrl={place.imageUrl}
+      />
+      <div className={travelCardClass.body}>
         <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-medium text-stone">{place.signature}</p>
-            <h3 className="mt-1 text-lg font-semibold leading-6 text-ink">
-              {place.name}
-            </h3>
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold text-pine">{place.signature}</p>
+            <h3 className="mt-1 text-lg font-semibold leading-6 text-ink">{place.name}</h3>
           </div>
-          <span
-            className={cn(
-              "flex size-7 shrink-0 items-center justify-center rounded-full border",
-              selected ? "border-pine bg-pine text-ivory" : "border-pine/10 text-transparent",
-            )}
-          >
-            <Check aria-hidden="true" className="size-4" />
-          </span>
+          <TravelCardSelectIndicator selected={selected} />
         </div>
-        <p className="text-sm leading-5 text-stone">{place.recommendationReason}</p>
-        <div className="flex items-center gap-2 text-xs font-medium text-pine">
-          <Clock aria-hidden="true" className="size-3.5" />
-          <span>{place.estimatedDuration}</span>
-          <span className="text-stone">· {place.distanceNote}</span>
+        <p className={cn("mt-2", travelCardClass.subtitle)}>{place.recommendationReason}</p>
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          <TravelCardChip>{place.estimatedDuration}</TravelCardChip>
+          {place.reservationRequired ? (
+            <TravelCardChip tone="accent">예약 필요</TravelCardChip>
+          ) : null}
+          {place.partner ? <TravelCardChip tone="neutral">제휴</TravelCardChip> : null}
         </div>
       </div>
-    </article>
+    </TravelCardShell>
   );
 }

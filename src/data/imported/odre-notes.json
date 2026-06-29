@@ -1,0 +1,364 @@
+{
+  "notes": [],
+  "overlays": [
+    {
+      "id": "note-mukho-alley",
+      "sourceLine": "[현장] 무릉·추암·천곡·묵호·망상까지…동해시, 5대 권역 관…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.onews.tv/news/articleView.html?idxno=281251",
+        "pubDate": "2026-06-10"
+      },
+      "imageUrl": "/images/odre-notes/note-mukho-alley.jpg"
+    },
+    {
+      "id": "note-jeongseon-festival",
+      "sourceLine": "'가리왕산 봄나물축제' 15일 개막… 정선군, 산림 자원 활용…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.ftimes.kr/news/articleView.html?idxno=37413",
+        "pubDate": "2026-05-12"
+      },
+      "eventPeriod": {
+        "startDate": "2026-05-15",
+        "endDate": "2026-05-18"
+      },
+      "imageUrl": "/images/odre-notes/note-jeongseon-festival.jpg"
+    },
+    {
+      "id": "note-goseong-north-sea",
+      "sourceLine": "고성 DMZ에서 양양까지, 평화를 걷는 하룻밤",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.newscj.com/news/articleView.html?idxno=3394328",
+        "pubDate": "2026-04-16"
+      },
+      "imageUrl": "/images/odre-notes/note-goseong-north-sea.jpg"
+    },
+    {
+      "id": "note-pyeongchang-summer",
+      "sourceLine": "평창, 대관령의 시원한 바람과 자연의 숨결을 만나는 가볼 만한…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=582419",
+        "pubDate": "2026-06-16"
+      },
+      "eventPeriod": {
+        "startDate": "2026-07-01",
+        "endDate": "2026-07-31",
+        "monthOnly": true
+      },
+      "imageUrl": "/images/odre-notes/note-pyeongchang-summer.jpg"
+    },
+    {
+      "id": "note-sokcho-goseong-comma",
+      "sourceLine": "\"속초부터 양양까지, 이제 한 번에 여행?\"…동해안권 6개 시…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.tournews21.com/news/articleView.html?idxno=134636",
+        "pubDate": "2026-05-06"
+      },
+      "imageUrl": "/images/odre-notes/note-sokcho-goseong-comma.jpg"
+    },
+    {
+      "id": "note-benefit-light-touch",
+      "sourceLine": "강원관광재단, ‘5월 추천 여행지’ 삼척·양구 선정…봄 축제·…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://news.mtn.co.kr/news-detail/2026042408460813477",
+        "pubDate": "2026-04-24"
+      },
+      "imageUrl": "/images/odre-notes/note-benefit-light-touch.jpg"
+    },
+    {
+      "id": "note-samcheok-coastline",
+      "sourceLine": "삼척 바다여행 추천 1위, 23계단 상승..낚시는 옹진·신안",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://biz.heraldcorp.com/article/10549716?ref=naver",
+        "pubDate": "2025-08-08"
+      },
+      "imageUrl": "/images/odre-notes/note-samcheok-coastline.jpg"
+    },
+    {
+      "id": "note-gangneung-coffee",
+      "sourceLine": "[로컬의 재발견] '커피 향은 파도를 타고'…강릉 안목 커피 …",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.yna.co.kr/view/AKR20260227118700062?input=1195m",
+        "pubDate": "2026-02-27"
+      },
+      "eventPeriod": {
+        "startDate": "2026-10-09",
+        "endDate": "2026-10-12"
+      },
+      "imageUrl": "/images/odre-notes/note-gangneung-coffee.jpg"
+    },
+    {
+      "id": "note-cheorwon-rose-festival",
+      "sourceLine": "관광객 85% \"보령머드축제 알죠\"…한탄강얼음축제, 만족도 최고",
+      "source": {
+        "kind": "naver-news",
+        "url": "http://www.fnnews.com/news/202507131853103858",
+        "pubDate": "2025-07-13"
+      },
+      "eventPeriod": {
+        "startDate": "2026-05-20",
+        "endDate": "2026-05-25"
+      },
+      "imageUrl": "/images/odre-notes/note-cheorwon-rose-festival.jpg"
+    },
+    {
+      "id": "note-yeongwol-cave",
+      "sourceLine": "서강 따라 즐기는 영월 가볼 만한 곳 여행 코스",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16014927",
+        "pubDate": "2026-03-24"
+      },
+      "imageUrl": "/images/odre-notes/note-yeongwol-cave.jpg"
+    },
+    {
+      "id": "note-gangwon-autumn-drive",
+      "sourceLine": "매년 새로 만든다… 강원도 '영월' 강 위에 놓인 정말 신비로…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.wikitree.co.kr/articles/1138682",
+        "pubDate": "2026-05-28"
+      },
+      "imageUrl": "/images/odre-notes/note-gangwon-autumn-drive.jpg"
+    },
+    {
+      "id": "note-dmz-peace-trail",
+      "sourceLine": "[여시아문] DMZ 평화의 길에 서다",
+      "source": {
+        "kind": "naver-news",
+        "url": "http://www.ibulgyo.com/news/articleView.html?idxno=434547",
+        "pubDate": "2026-01-09"
+      },
+      "eventPeriod": {
+        "startDate": "2026-04-18",
+        "endDate": "2026-04-20"
+      },
+      "imageUrl": "/images/odre-notes/note-dmz-peace-trail.jpg"
+    },
+    {
+      "id": "note-donghae-lavender",
+      "sourceLine": "동해 ‘무릉별유천지 라벤더 축제’ 성료…10만 명 방문",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.pressian.com/pages/articles/2026062217005272255?utm_source=naver&utm_medium=search",
+        "pubDate": "2026-06-22"
+      },
+      "eventPeriod": {
+        "startDate": "2026-06-13",
+        "endDate": "2026-06-21"
+      },
+      "imageUrl": "/images/odre-notes/note-donghae-lavender.jpg"
+    },
+    {
+      "id": "note-gangneung-dano",
+      "sourceLine": "[포토뉴스]강릉단오제, ‘단오 창포물대전’ 첫선",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.kwnews.co.kr/page/view/2026062150089900000",
+        "pubDate": "2026-06-21"
+      },
+      "eventPeriod": {
+        "startDate": "2026-06-15",
+        "endDate": "2026-06-22"
+      },
+      "imageUrl": "/images/odre-notes/note-gangneung-dano.jpg"
+    },
+    {
+      "id": "note-donghae-portmarket",
+      "sourceLine": "강원랜드, 여름 외래객 유치 가속…체류형 관광으로 글로벌 시장…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.pressian.com/pages/articles/2026061518130399398?utm_source=naver&utm_medium=search",
+        "pubDate": "2026-06-15"
+      },
+      "imageUrl": "/images/odre-notes/note-donghae-portmarket.jpg"
+    },
+    {
+      "id": "note-samcheok-hwanseon",
+      "sourceLine": "[명경대] 삼척 관광의 존재감",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.kado.net/news/articleView.html?idxno=2001387",
+        "pubDate": "2025-08-25"
+      },
+      "imageUrl": "/images/odre-notes/note-samcheok-hwanseon.jpg"
+    },
+    {
+      "id": "note-gangneung-jumunjin",
+      "sourceLine": "'탁구 축제' 열린 강릉, 시장도 해변도 관광객으로 가득",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.news1.kr/local/kangwon/6189700",
+        "pubDate": "2026-06-07"
+      },
+      "imageUrl": "/images/odre-notes/note-gangneung-jumunjin.jpg"
+    },
+    {
+      "id": "note-yangyang-naksan",
+      "sourceLine": "2030 미혼남녀 템플스테이 ‘나는 절로, 낙산’",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.kwnews.co.kr/page/view/2026060850093600000",
+        "pubDate": "2026-06-08"
+      },
+      "eventPeriod": {
+        "startDate": "2026-07-11",
+        "endDate": "2026-07-12"
+      },
+      "imageUrl": "/images/odre-notes/note-yangyang-naksan.jpg"
+    },
+    {
+      "id": "note-yangyang-surf",
+      "sourceLine": "양양 스마트관광 플랫폼 '고고양양' 회원 3만명 돌파",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5030967",
+        "pubDate": "2026-06-16"
+      },
+      "imageUrl": "/images/odre-notes/note-yangyang-surf.jpg"
+    },
+    {
+      "id": "note-sokcho-seorak",
+      "sourceLine": "속초시 '2025~2026 강원 방문의 해' 9월 추천 여행지…",
+      "source": {
+        "kind": "naver-news",
+        "url": "http://www.lawissue.co.kr/view.php?ud=20250827101843945edd30pn2gj_12",
+        "pubDate": "2025-08-27"
+      },
+      "imageUrl": "/images/odre-notes/note-sokcho-seorak.jpg"
+    },
+    {
+      "id": "note-sokcho-abai",
+      "sourceLine": "당일치기 여행코스 ④속초관광수산시장·청초호 호수공원·아바이 벽…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.ilyosisa.co.kr/news/article.html?no=255430",
+        "pubDate": "2026-04-19"
+      },
+      "imageUrl": "/images/odre-notes/note-sokcho-abai.jpg"
+    },
+    {
+      "id": "note-goseong-unification",
+      "sourceLine": "평화의 길 따라 떠나는 특별한 여정…강원도 DMZ 체험관광 본…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.thefairnews.co.kr/news/articleView.html?idxno=79078",
+        "pubDate": "2026-06-09"
+      },
+      "imageUrl": "/images/odre-notes/note-goseong-unification.jpg"
+    },
+    {
+      "id": "note-cheorwon-dmz-walk",
+      "sourceLine": "강원 철원, 여름날의 평화와 역사가 어우러진 가볼 만한 곳",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=578640",
+        "pubDate": "2026-06-01"
+      },
+      "imageUrl": "/images/odre-notes/note-cheorwon-dmz-walk.jpg"
+    },
+    {
+      "id": "note-yeongwol-donggang",
+      "sourceLine": "영월문화관광재단 10주년 기념식…\"문화로 이어갈 미래\"",
+      "source": {
+        "kind": "naver-news",
+        "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2374328",
+        "pubDate": "2025-12-26"
+      },
+      "imageUrl": "/images/odre-notes/note-yeongwol-donggang.jpg"
+    },
+    {
+      "id": "note-jeongseon-railbike",
+      "sourceLine": "정선선 유일 관광열차 '정선아리랑열차' 다시 달린다",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.bizwork.co.kr/news/articleView.html?idxno=415546",
+        "pubDate": "2026-05-13"
+      },
+      "imageUrl": "/images/odre-notes/note-jeongseon-railbike.jpg"
+    },
+    {
+      "id": "note-pyeongchang-alpensia",
+      "sourceLine": "평창의 영광은 어디로…‘반값 농지’ 속출하는 강원 농촌",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.nongmin.com/article/20260508500534",
+        "pubDate": "2026-05-25"
+      },
+      "imageUrl": "/images/odre-notes/note-pyeongchang-alpensia.jpg"
+    },
+    {
+      "id": "note-pyeongchang-herding",
+      "sourceLine": "“호텔만 가는 시대 끝”…양떼목장·라벤더축제까지 묶었다",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.mk.co.kr/article/12069421",
+        "pubDate": "2026-06-09"
+      },
+      "eventPeriod": {
+        "startDate": "2026-07-01",
+        "endDate": "2026-08-31",
+        "monthOnly": true
+      },
+      "imageUrl": "/images/odre-notes/note-pyeongchang-herding.jpg"
+    },
+    {
+      "id": "note-wonju-museum",
+      "sourceLine": "이야기와 모험이 공존하는 원주, 가족과 함께 가볼 만한 곳",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=583285",
+        "pubDate": "2026-06-21"
+      },
+      "imageUrl": "/images/odre-notes/note-wonju-museum.jpg"
+    },
+    {
+      "id": "note-chuncheon-lake",
+      "sourceLine": "춘천, 야간관광 강화로 체류형 도시 승부수",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.newscj.com/news/articleView.html?idxno=3394848",
+        "pubDate": "2026-04-20"
+      },
+      "imageUrl": "/images/odre-notes/note-chuncheon-lake.jpg"
+    },
+    {
+      "id": "note-chuncheon-gubongsan",
+      "sourceLine": "\"문화·관광·체육 도시로\"…육동한, 춘천 미래 비전 공약 발표",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.nocutnews.co.kr/news/6522626?utm_source=naver&utm_medium=article&utm_campaign=20260526022308",
+        "pubDate": "2026-05-26"
+      },
+      "imageUrl": "/images/odre-notes/note-chuncheon-gubongsan.jpg"
+    },
+    {
+      "id": "note-gangneung-rainy-day",
+      "sourceLine": "강릉·평창 잇는 1박2일 관광상품 출시…'대관령 너머, 산해진…",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.kado.net/news/articleView.html?idxno=2053517",
+        "pubDate": "2026-06-02"
+      },
+      "imageUrl": "/images/odre-notes/note-gangneung-rainy-day.png"
+    },
+    {
+      "id": "note-nature-road-samcheok",
+      "sourceLine": "푸른 파도가 부르는 삼척의 해변, 여름 여행으로 가볼 만한 곳",
+      "source": {
+        "kind": "naver-news",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=525745",
+        "pubDate": "2026-06-21"
+      },
+      "imageUrl": "/images/odre-notes/note-nature-road-samcheok.jpg"
+    }
+  ],
+  "refreshedAt": "2026-06-22T10:02:09.361Z"
+}

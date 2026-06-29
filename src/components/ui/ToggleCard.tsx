@@ -1,5 +1,9 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { Check } from "lucide-react";
+import {
+  TravelCardButton,
+  TravelCardSelectIndicator,
+  travelCardClass,
+} from "@/components/ui/TravelCard";
 import { cn } from "@/lib/utils";
 
 interface ToggleCardProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,32 +23,17 @@ export function ToggleCard({
   ...props
 }: ToggleCardProps) {
   return (
-    <button
-      className={cn(
-        "w-full rounded-2xl border bg-paper p-4 text-left transition-colors",
-        selected ? "border-pine shadow-[var(--shadow-card)]" : "border-pine/10 hover:border-pine/30",
-        className,
-      )}
-      type={type}
-      {...props}
-    >
-      <div className="flex items-start justify-between gap-4">
+    <TravelCardButton className={className} selected={selected} type={type} {...props}>
+      <div className="flex items-start justify-between gap-4 p-4">
         <div>
           <p className="text-sm font-semibold text-ink">{title}</p>
           {description ? (
-            <p className="mt-1 text-xs leading-5 text-stone">{description}</p>
+            <p className={cn("mt-1", travelCardClass.meta)}>{description}</p>
           ) : null}
         </div>
-        <span
-          className={cn(
-            "flex size-6 shrink-0 items-center justify-center rounded-full border",
-            selected ? "border-pine bg-pine text-ivory" : "border-pine/15 text-transparent",
-          )}
-        >
-          <Check aria-hidden="true" className="size-3.5" />
-        </span>
+        <TravelCardSelectIndicator selected={selected} />
       </div>
-      {children ? <div className="mt-3">{children}</div> : null}
-    </button>
+      {children ? <div className="border-t border-pine/8 px-4 pb-4">{children}</div> : null}
+    </TravelCardButton>
   );
 }
